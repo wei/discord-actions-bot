@@ -1,0 +1,11 @@
+version: "3"
+services:
+  discord-actions-bot:
+    build: ./
+    restart: always
+    volumes:
+      - "db:/app/db"
+    env_file:
+      - ./.env
+volumes:
+  db:
