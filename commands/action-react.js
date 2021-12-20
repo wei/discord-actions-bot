@@ -1,4 +1,6 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder, bold } = require('@discordjs/builders');
+const { CommandInteraction } = require('discord.js');
+const { upsertActionMessage } = require('../datastore');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -13,7 +15,33 @@ module.exports = {
 			option.setName('title')
 				.setDescription('Enter the description of the action')
 				.setRequired(true)),
+	/**
+	 * Executes the command.
+	 *
+	 * @param {CommandInteraction} interaction
+	 */
 	async execute(interaction) {
-		await interaction.reply('Actions React!');
+		const role = interaction.options.getRole('role');
+		const title = interaction.options.getString('title');
+
+		await interaction.reply(`${bold(title)} ${role.toString()}`);
+
+		const message = await interaction.fetchReply();
+		await message.react('✅');
+
+		/** @type {import('../helpers/types').ActionMessage} */
+		const actionMessage = {
+			actionMessageId: message.id,
+			actionMessageType: 'action-react',
+			title,
+			guildId: message.guildId,
+			channelId: message.channelId,
+			roleId: role.id,
+			timestamp: message.createdTimestamp,
+		};
+
+		const renderedMessage = await interaction.client.customActions.renderActionsReactMessage(actionMessage);
+		await interaction.editReply(renderedMessage);
+		await upsertActionMessage(actionMessage);
 	},
 };
