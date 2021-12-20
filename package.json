@@ -1,0 +1,29 @@
+{
+  "name": "discord-actions-bot",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wei/discord-actions-bot.git"
+  },
+  "author": "Wei He and Damir Temir",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wei/discord-actions-bot/issues"
+  },
+  "homepage": "https://github.com/wei/discord-actions-bot#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.9.0",
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord-api-types": "^0.25.2",
+    "discord.js": "^13.3.1",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.5.0"
+  }
+}

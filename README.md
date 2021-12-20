@@ -1,1 +1,1 @@
-# discord-actions-bot
+# Discord Actions Bot
