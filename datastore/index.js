@@ -1,17 +1,21 @@
-// Using lowdb
 const path = require('path');
-const lowdb = require('lowdb-node');
+const fs = require('fs');
+
+/** @type {{actionMessages: import('../helpers/types').ActionMessage} | null} */
+let data = null;
 
 // Use JSON file for storage
-const file = path.join(__dirname, 'db.json');
-const adapter = new lowdb.JSONFile(file);
-const db = new lowdb.Low(adapter);
+const file = path.join(__dirname, '../db/db.json');
 
-// Set up db.data
-db.read();
+try {
+	const diskData = fs.readFileSync(file, 'utf8');
+	data = diskData ? JSON.parse(diskData) : null;
+}
+catch (error) {
+	// Ignore
+}
 
-// If no db.data, create one
-db.data ||= { actionMessages: [] };
+data ||= { actionMessages: [] };
 
 /**
  * Receive the contents of the message given an actionMessageId
@@ -20,7 +24,7 @@ db.data ||= { actionMessages: [] };
  * @returns {import('../helpers/types').ActionMessage | undefined}
  */
 function getActionMessageById(actionMessageId) {
-	return db.data.actionMessages.find(m => m.actionMessageId === actionMessageId);
+	return data.actionMessages.find(m => m.actionMessageId === actionMessageId);
 }
 
 /**
@@ -29,7 +33,7 @@ function getActionMessageById(actionMessageId) {
  * @returns {import('../helpers/types').ActionMessage[]}
  */
 function getAllActionMessages() {
-	return db.data.actionMessages;
+	return data.actionMessages;
 }
 
 /**
@@ -38,11 +42,16 @@ function getAllActionMessages() {
  * @param {import('../helpers/types').ActionMessage} actionMessage
  */
 async function upsertActionMessage(actionMessage) {
-	db.data.actionMessages = [
+	data.actionMessages = [
 		actionMessage,
-		...db.data.actionMessages.filter(m => m.actionMessageId !== actionMessage.actionMessageId),
+		...data.actionMessages.filter(m => m.actionMessageId !== actionMessage.actionMessageId),
 	];
-	await db.write();
+	try {
+		fs.writeFileSync(file, JSON.stringify(data, null, 2));
+	}
+	catch (error) {
+		// Ignore
+	}
 }
 
 module.exports = {

@@ -1,9 +1,10 @@
 {
   "name": "discord-actions-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "🤖 A Discord Bot that helps with Action Items.",
   "scripts": {
     "start": "node index.js",
+    "deploy-commands": "node deploy-commands.js",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,8 +23,7 @@
     "@discordjs/rest": "^0.1.0-canary.0",
     "discord-api-types": "^0.25.2",
     "discord.js": "^13.3.1",
-    "dotenv": "^10.0.0",
-    "lowdb-node": "^3.0.2"
+    "dotenv": "^10.0.0"
   },
   "devDependencies": {
     "eslint": "^8.5.0"
