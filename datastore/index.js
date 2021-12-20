@@ -39,8 +39,8 @@ function getAllActionMessages() {
  */
 async function upsertActionMessage(actionMessage) {
 	db.data.actionMessages = [
-		...db.data.actionMessages.filter(m => m.actionMessageId !== actionMessage.actionMessageId),
 		actionMessage,
+		...db.data.actionMessages.filter(m => m.actionMessageId !== actionMessage.actionMessageId),
 	];
 	await db.write();
 }
