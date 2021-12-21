@@ -47,9 +47,10 @@ module.exports = {
 			channelId: message.channelId,
 			roleId: role.id,
 			timestamp: message.createdTimestamp,
+			templateId: template,
 		};
 
-		const renderedMessage = await interaction.client.customActions.renderActionsThreadMessage(actionMessage, template);
+		const renderedMessage = await interaction.client.customActions.renderActionsThreadMessage(actionMessage);
 		await interaction.editReply(renderedMessage);
 		await upsertActionMessage(actionMessage);
 	},

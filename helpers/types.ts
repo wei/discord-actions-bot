@@ -8,4 +8,5 @@ export type ActionMessage = {
   channelId: string;
   roleId: string;
   timestamp: number;
+  templateId?: string;
 }
