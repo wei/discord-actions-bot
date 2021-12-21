@@ -42,7 +42,7 @@ Example:
 ### Step 1: Create and Install Discord App
 
 1. Create a new [Discord app](https://discord.com/developers/applications).
-1. Go to the app's dashboard and create a bot user.
+1. Go to the app's dashboard and create a bot user with _SERVER MEMBERS INTENT_ turned on.
 1. Install the **Discord Bot** by going to `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&scope=bot%20applications.commands&permissions=446677109824`
 
 ### Step 2: Deployment
