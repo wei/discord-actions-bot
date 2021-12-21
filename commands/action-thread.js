@@ -1,5 +1,6 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
+const { SlashCommandBuilder, bold } = require('@discordjs/builders');
 const { CommandInteraction } = require('discord.js');
+const { upsertActionMessage } = require('../datastore');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -20,6 +21,30 @@ module.exports = {
 	 * @param {CommandInteraction} interaction
 	 */
 	async execute(interaction) {
-		await interaction.reply('Actions Thread!');
+		const role = interaction.options.getRole('role');
+		const title = interaction.options.getString('title');
+
+		await interaction.reply(`${bold(title)} ${role.toString()}`);
+
+		const message = await interaction.fetchReply();
+		await message.startThread({
+			name: '📝',
+			autoArchiveDuration: 1440,
+		});
+
+		/** @type {import('../helpers/types').ActionMessage} */
+		const actionMessage = {
+			actionMessageId: message.id,
+			actionMessageType: 'action-thread',
+			title,
+			guildId: message.guildId,
+			channelId: message.channelId,
+			roleId: role.id,
+			timestamp: message.createdTimestamp,
+		};
+
+		const renderedMessage = await interaction.client.customActions.renderActionsThreadMessage(actionMessage);
+		await interaction.editReply(renderedMessage);
+		await upsertActionMessage(actionMessage);
 	},
 };

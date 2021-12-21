@@ -45,9 +45,39 @@ function customActions(client) {
 		}
 	}
 
+	/**
+	 * Render Action Thread Message
+	 *
+	 * @param {import('../helpers/types').ActionMessage} actionMessage
+	 */
+	async function renderActionsThreadMessage(actionMessage) {
+	// Get all members of role
+		const guild = client.guilds.cache.get(actionMessage.guildId);
+		await guild.members.fetch();
+		const role = await guild.roles.fetch(actionMessage.roleId);
+
+		const channel = guild.channels.cache.get(actionMessage.channelId);
+		const thread = channel.threads.cache.get(actionMessage.actionMessageId);
+
+		const usersInRole = role.members.map(m => m.user);
+		const messagesInThread = await thread.messages.fetch();
+		const userIdsResponded = messagesInThread.map(m => m.author.id);
+
+		// Get users who are yet to respond
+		const usersPending = usersInRole.filter(u => !userIdsResponded.includes(u.id));
+
+		if (usersPending.length === 0) {
+			return `${bold(actionMessage.title)} ${role.toString()}\n${italic('✅ All Done!')}`;
+		}
+		else {
+			return `${bold(actionMessage.title)} ${role.toString()}\n${italic('Pending:')}\n${usersPending.map(u => `:white_small_square: ${u.toString()}`).join('\n')}`;
+		}
+	}
+
 	return {
 		cacheExistingMessages,
 		renderActionsReactMessage,
+		renderActionsThreadMessage,
 	};
 }
 

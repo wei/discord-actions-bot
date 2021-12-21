@@ -7,6 +7,5 @@ export type ActionMessage = {
   guildId: string;
   channelId: string;
   roleId: string;
-  actionThreadId?: string; // Only for action-thread
   timestamp: number;
 }
