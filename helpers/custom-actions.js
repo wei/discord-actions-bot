@@ -1,6 +1,18 @@
 const { bold, italic } = require('@discordjs/builders');
+const fetch = require('isomorphic-fetch');
 const { getAllActionMessages } = require('../datastore');
 const templates = require('./templates');
+
+async function getRandomGif() {
+	try {
+		const response = await fetch(`https://g.tenor.com/v1/random?q=celebrate&limit=1&key=${process.env.TENOR_API_KEY}`);
+		const json = await response.json();
+		return json.results[0].url;
+	}
+	catch (error) {
+		return 'https://c.tenor.com/IErQHBRt6GIAAAAd/leonardo-dicaprio.gif';
+	}
+}
 
 /**
  *
@@ -39,7 +51,7 @@ function customActions(client) {
 		const usersPending = usersInRole.filter(u => !usersReacted.has(u.id));
 
 		if (usersPending.length === 0) {
-			return `${bold(actionMessage.title)} ${role.toString()}\n${italic('✅ All Done!')}`;
+			return `${bold(actionMessage.title)} ${role.toString()}\n${await getRandomGif()}`;
 		}
 		else {
 			return `${bold(actionMessage.title)} ${role.toString()}\n${italic('Pending:')}\n${usersPending.map(u => `:white_small_square: ${u.toString()}`).join('\n')}`;
@@ -70,7 +82,7 @@ function customActions(client) {
 		const template = templates[templateId] ?? '\n';
 
 		if (usersPending.length === 0) {
-			return `📑${bold(actionMessage.title)} ${role.toString()}${template}${italic('✅ All Done!')}`;
+			return `📑${bold(actionMessage.title)} ${role.toString()}${template}${await getRandomGif()}`;
 		}
 		else {
 			return `📑${bold(actionMessage.title)} ${role.toString()}${template}${italic('Pending:')}\n${usersPending.map(u => `:white_small_square: ${u.toString()}`).join('\n')}`;

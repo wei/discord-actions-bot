@@ -3,8 +3,9 @@ FROM node:17-alpine
 ENV \
   CLIENT_ID= \
   DISCORD_TOKEN= \
-  # Guild id is optional
+  # Optional #
   GUILD_ID= \
+  TENOR_API_KEY= \
   _=
 
 WORKDIR /app
