@@ -14,7 +14,12 @@ module.exports = {
 		.addStringOption(option =>
 			option.setName('title')
 				.setDescription('Enter the description of the action')
-				.setRequired(true)),
+				.setRequired(true))
+		.addStringOption(option =>
+			option.setName('template')
+				.setDescription('Select a template to use (optional)')
+				.addChoice('Standup', 'standup')
+				.addChoice('Retrospective', 'retrospective')),
 	/**
 	 * Executes the command.
 	 *
@@ -23,8 +28,9 @@ module.exports = {
 	async execute(interaction) {
 		const role = interaction.options.getRole('role');
 		const title = interaction.options.getString('title');
+		const template = interaction.options.getString('template');
 
-		await interaction.reply(`${bold(title)} ${role.toString()}`);
+		await interaction.reply(`📑${bold(title)} ${role.toString()}`);
 
 		const message = await interaction.fetchReply();
 		await message.startThread({
@@ -43,7 +49,7 @@ module.exports = {
 			timestamp: message.createdTimestamp,
 		};
 
-		const renderedMessage = await interaction.client.customActions.renderActionsThreadMessage(actionMessage);
+		const renderedMessage = await interaction.client.customActions.renderActionsThreadMessage(actionMessage, template);
 		await interaction.editReply(renderedMessage);
 		await upsertActionMessage(actionMessage);
 	},

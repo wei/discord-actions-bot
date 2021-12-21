@@ -1,5 +1,6 @@
 const { bold, italic } = require('@discordjs/builders');
 const { getAllActionMessages } = require('../datastore');
+const templates = require('./templates');
 
 /**
  *
@@ -50,7 +51,7 @@ function customActions(client) {
 	 *
 	 * @param {import('../helpers/types').ActionMessage} actionMessage
 	 */
-	async function renderActionsThreadMessage(actionMessage) {
+	async function renderActionsThreadMessage(actionMessage, templateId) {
 	// Get all members of role
 		const guild = client.guilds.cache.get(actionMessage.guildId);
 		await guild.members.fetch();
@@ -66,11 +67,13 @@ function customActions(client) {
 		// Get users who are yet to respond
 		const usersPending = usersInRole.filter(u => !userIdsResponded.includes(u.id));
 
+		const template = templates[templateId] ?? '\n';
+
 		if (usersPending.length === 0) {
-			return `${bold(actionMessage.title)} ${role.toString()}\n${italic('✅ All Done!')}`;
+			return `📑${bold(actionMessage.title)} ${role.toString()}${template}${italic('✅ All Done!')}`;
 		}
 		else {
-			return `${bold(actionMessage.title)} ${role.toString()}\n${italic('Pending:')}\n${usersPending.map(u => `:white_small_square: ${u.toString()}`).join('\n')}`;
+			return `📑${bold(actionMessage.title)} ${role.toString()}${template}${italic('Pending:')}\n${usersPending.map(u => `:white_small_square: ${u.toString()}`).join('\n')}`;
 		}
 	}
 

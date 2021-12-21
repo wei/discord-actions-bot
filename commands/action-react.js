@@ -24,7 +24,7 @@ module.exports = {
 		const role = interaction.options.getRole('role');
 		const title = interaction.options.getString('title');
 
-		await interaction.reply(`${bold(title)} ${role.toString()}`);
+		await interaction.reply(`📑${bold(title)} ${role.toString()}`);
 
 		const message = await interaction.fetchReply();
 		await message.react('✅');
