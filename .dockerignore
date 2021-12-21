@@ -3,6 +3,7 @@ npm-debug.log
 Dockerfile
 docker-compose.yml
 .git
+.github
 .gitignore
 .dockerignore
 db.json
