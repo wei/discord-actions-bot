@@ -22,6 +22,10 @@ Example:
 /action-react @Pod 4.0.3 Due Friday: Complete Week 12 Survey
 ```
 
+![](https://user-images.githubusercontent.com/5880908/146950481-f6fa4469-c4cf-4f4c-910f-a566bbb233ff.png)
+![](https://user-images.githubusercontent.com/5880908/146950525-846cfc2d-6029-4fed-9365-d91c05bb45e8.png)
+![](https://user-images.githubusercontent.com/5880908/146950581-b3c55d8a-0939-4a44-88c3-098337b56fde.png)
+
 ### `/action-thread`
 
 Create an action that requires users of a particular role to reply in a thread.
@@ -34,8 +38,12 @@ Follow the slach command prompt:
 Example:
 ```
 /action-thread @Pod 4.0.3 Friday December 17th: Post Standup Notes
+
+/action-thread @Pod 4.0.3 Week 12 Retrospective
 ```
 
+![](https://user-images.githubusercontent.com/5880908/146950775-a636f346-2d8b-424f-9e35-78bb2600244d.png)
+![](https://user-images.githubusercontent.com/5880908/146950866-e93a23fc-d5f9-4bec-8fc2-de2ad4aefdd3.png)
 
 ## Self-hosting
 
