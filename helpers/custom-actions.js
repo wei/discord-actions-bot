@@ -48,7 +48,7 @@ function customActions(client) {
 			const role = await guild.roles.fetch(actionMessage.roleId);
 
 			const channel = guild.channels.cache.get(actionMessage.channelId);
-			const message = channel.messages.cache.get(actionMessage.actionMessageId);
+			const message = await channel.messages.fetch(actionMessage.actionMessageId);
 
 			const usersInRole = role.members.map(m => m.user);
 			const usersReacted = message.reactions.cache.get('✅').users.cache;
