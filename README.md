@@ -95,11 +95,11 @@ And finally, to make completing the actions fun, we added a random GIF that will
 
 ### Results
 
-In the few hours we put toward this hackathon project, we built a stable product that will let fellows complete their tasks without leaving Discord. It will us keep everything within one platform to allow for better navigation and performance.
+In the few hours we put toward this hackathon project, we built a stable product that will let fellows complete their tasks without leaving Discord. It will let us keep everything within one platform to allow for better navigation and performance.
 
 ## Future Plans
 
-### `/action-remind` (remind asap) | `/action-set-reminder 3` (hours in advance)
+### `/action-remind` (remind asap) || `/action-set-reminder 3` (hours in advance)
 
 Send friendly reminders to fellows to complete their standup notes (no need for messages).
 
