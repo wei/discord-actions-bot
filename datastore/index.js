@@ -23,7 +23,7 @@ data ||= { actionMessages: [] };
  * @param {string} actionMessageId
  * @returns {import('../helpers/types').ActionMessage | undefined}
  */
-function getActionMessageById(actionMessageId) {
+async function getActionMessageById(actionMessageId) {
 	return data.actionMessages.find(m => m.actionMessageId === actionMessageId);
 }
 
@@ -32,7 +32,7 @@ function getActionMessageById(actionMessageId) {
  *
  * @returns {import('../helpers/types').ActionMessage[]}
  */
-function getAllActionMessages() {
+async function getAllActionMessages() {
 	return data.actionMessages;
 }
 

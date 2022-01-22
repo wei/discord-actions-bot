@@ -20,7 +20,7 @@ module.exports = {
 			}
 		}
 		if (reaction.emoji.name === '✅' && !user.bot) {
-			const actionMessage = getActionMessageById(reaction.message.id);
+			const actionMessage = await getActionMessageById(reaction.message.id);
 			if (actionMessage && actionMessage.actionMessageType === 'action-react') {
 				const renderedMessage = await reaction.client.customActions.renderActionsReactMessage(actionMessage);
 				reaction.message.edit(renderedMessage);

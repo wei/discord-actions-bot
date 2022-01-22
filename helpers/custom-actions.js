@@ -23,7 +23,7 @@ function customActions(client) {
 	 * We need to do this in order to trigger messageReactionAdd and messageReactionRemove events.
 	 */
 	async function cacheExistingMessages() {
-		for (const actionMessage of getAllActionMessages()) {
+		for (const actionMessage of await getAllActionMessages()) {
 			try {
 				const guild = await client.guilds.fetch(actionMessage.guildId);
 				const channel = await guild.channels.fetch(actionMessage.channelId);

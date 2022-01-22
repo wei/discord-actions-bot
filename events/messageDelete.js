@@ -10,7 +10,7 @@ module.exports = {
 	 */
 	async execute(message) {
 		if (message.channel.isThread && !message.author.bot) {
-			const actionMessage = getActionMessageById(message.channel.id);
+			const actionMessage = await getActionMessageById(message.channel.id);
 			if (actionMessage && actionMessage.actionMessageType === 'action-thread') {
 				const renderedMessage = await message.client.customActions.renderActionsThreadMessage(actionMessage);
 
