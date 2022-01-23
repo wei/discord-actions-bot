@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, bold } = require('@discordjs/builders');
 const { CommandInteraction } = require('discord.js');
 const { upsertActionMessage } = require('../datastore');
+const TEMPLATES = require('../helpers/templates');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,11 +16,14 @@ module.exports = {
 			option.setName('title')
 				.setDescription('Enter the description of the action')
 				.setRequired(true))
-		.addStringOption(option =>
+		.addStringOption(option => {
 			option.setName('template')
-				.setDescription('Select a template to use (optional)')
-				.addChoice('Standup', 'standup')
-				.addChoice('Retrospective', 'retrospective')),
+				.setDescription('Select a template to use (optional)');
+			for (const template of Object.keys(TEMPLATES)) {
+				option.addChoice(template, template);
+			}
+			return option;
+		}),
 	/**
 	 * Executes the command.
 	 *
