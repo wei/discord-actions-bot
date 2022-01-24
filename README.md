@@ -30,7 +30,7 @@ Example:
 
 Create an action that requires users of a particular role to reply in a thread.
 
-Follow the slach command prompt:
+Follow the slash command prompt:
 ```
 /action-thread [role] [message]
 ```
@@ -44,6 +44,25 @@ Example:
 
 ![](https://user-images.githubusercontent.com/5880908/146950775-a636f346-2d8b-424f-9e35-78bb2600244d.png)
 ![](https://user-images.githubusercontent.com/5880908/146950866-e93a23fc-d5f9-4bec-8fc2-de2ad4aefdd3.png)
+
+### `/action-poll`
+
+Create a poll that requires users of a particular role to vote by reacting.
+
+Follow the slash command prompt:
+```
+/action-poll [role] [title] [options]
+```
+
+Example:
+```
+/action-poll @Pod 4.0.3 [What do you want to play at our game day?] [Skribbl, Gartic Phone, Among Us, Jack Box]
+```
+
+![](https://user-images.githubusercontent.com/5880908/150705373-3eaf06c8-964c-4322-8d58-209395f05c5a.png)
+![](https://user-images.githubusercontent.com/5880908/150705282-b4492523-77b5-4afb-8487-5f52f9f63dc6.png)
+![](https://user-images.githubusercontent.com/5880908/150705327-1bb1fee6-40a2-4477-9e08-e871ee2d1ab5.png)
+
 
 ## Self-hosting
 
@@ -110,10 +129,6 @@ In the few hours we put toward this hackathon project, we built a stable product
 ### `/action-remind` (remind asap) || `/action-set-reminder 3` (hours in advance)
 
 Send friendly reminders to fellows to complete their standup notes (no need for messages).
-
-### `/action-vote`
-
-Let fellows vote to play their favorite games on gamedays (no more annoying zoom polls).
 
 ### `/action-survey`
 
