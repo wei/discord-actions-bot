@@ -8,11 +8,11 @@ let data = null;
 const file = path.join(__dirname, '../db/db.json');
 
 try {
-	const diskData = fs.readFileSync(file, 'utf8');
-	data = diskData ? JSON.parse(diskData) : null;
+  const diskData = fs.readFileSync(file, 'utf8');
+  data = diskData ? JSON.parse(diskData) : null;
 }
 catch (error) {
-	// Ignore
+  // Ignore
 }
 
 data ||= { actionMessages: [] };
@@ -24,7 +24,7 @@ data ||= { actionMessages: [] };
  * @returns {import('../helpers/types').ActionMessage | undefined}
  */
 async function getActionMessageById(actionMessageId) {
-	return data.actionMessages.find(m => m.actionMessageId === actionMessageId);
+  return data.actionMessages.find(m => m.actionMessageId === actionMessageId);
 }
 
 /**
@@ -33,7 +33,7 @@ async function getActionMessageById(actionMessageId) {
  * @returns {import('../helpers/types').ActionMessage[]}
  */
 async function getAllActionMessages() {
-	return data.actionMessages;
+  return data.actionMessages;
 }
 
 /**
@@ -42,20 +42,20 @@ async function getAllActionMessages() {
  * @param {import('../helpers/types').ActionMessage} actionMessage
  */
 async function upsertActionMessage(actionMessage) {
-	data.actionMessages = [
-		actionMessage,
-		...data.actionMessages.filter(m => m.actionMessageId !== actionMessage.actionMessageId),
-	];
-	try {
-		fs.writeFileSync(file, JSON.stringify(data, null, 2));
-	}
-	catch (error) {
-		// Ignore
-	}
+  data.actionMessages = [
+    actionMessage,
+    ...data.actionMessages.filter(m => m.actionMessageId !== actionMessage.actionMessageId),
+  ];
+  try {
+    fs.writeFileSync(file, JSON.stringify(data, null, 2));
+  }
+  catch (error) {
+    // Ignore
+  }
 }
 
 module.exports = {
-	getActionMessageById,
-	getAllActionMessages,
-	upsertActionMessage,
+  getActionMessageById,
+  getAllActionMessages,
+  upsertActionMessage,
 };

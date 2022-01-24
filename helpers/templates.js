@@ -1,5 +1,5 @@
 module.exports = {
-	'standup': `
+  'standup': `
 \`\`\`
 Share your daily standup update with your Pod and mentor here. Respond to this discussion before your standup starts in the following format:
 
@@ -16,7 +16,7 @@ Share your daily standup update with your Pod and mentor here. Respond to this d
  - @username for x
 \`\`\`
 `,
-	'retrospective': `
+  'retrospective': `
 \`\`\`
 The goal of this meeting is to provide Fellows an opportunity to discuss what worked well in the last week and address any challenges, along with areas of improvement:
 
