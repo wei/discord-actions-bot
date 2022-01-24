@@ -54,7 +54,7 @@ module.exports = {
 			templateId: template,
 		};
 
-		const renderedMessage = await interaction.client.customActions.renderActionsThreadMessage(actionMessage);
+		const renderedMessage = await interaction.client.customActions.renderActionThreadMessage(actionMessage);
 		await interaction.editReply(renderedMessage);
 		await upsertActionMessage(actionMessage);
 	},

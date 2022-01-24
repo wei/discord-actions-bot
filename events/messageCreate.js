@@ -12,7 +12,7 @@ module.exports = {
 		if (message.channel.isThread && !message.author.bot) {
 			const actionMessage = await getActionMessageById(message.channel.id);
 			if (actionMessage && actionMessage.actionMessageType === 'action-thread') {
-				const renderedMessage = await message.client.customActions.renderActionsThreadMessage(actionMessage);
+				const renderedMessage = await message.client.customActions.renderActionThreadMessage(actionMessage);
 
 				const parentMessage = message.channel.messages.cache.get(actionMessage.actionMessageId);
 				parentMessage.edit(renderedMessage);

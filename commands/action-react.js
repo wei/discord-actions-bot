@@ -40,7 +40,7 @@ module.exports = {
 			timestamp: message.createdTimestamp,
 		};
 
-		const renderedMessage = await interaction.client.customActions.renderActionsReactMessage(actionMessage);
+		const renderedMessage = await interaction.client.customActions.renderActionReactMessage(actionMessage);
 		await interaction.editReply(renderedMessage);
 		await upsertActionMessage(actionMessage);
 	},

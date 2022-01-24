@@ -42,7 +42,7 @@ function customActions(client) {
 	 *
 	 * @param {import('../helpers/types').ActionMessage} actionMessage
 	 */
-	async function renderActionsReactMessage(actionMessage) {
+	async function renderActionReactMessage(actionMessage) {
 		try {
 			// Get all members of role
 			const guild = client.guilds.cache.get(actionMessage.guildId);
@@ -76,7 +76,7 @@ function customActions(client) {
 	 *
 	 * @param {import('../helpers/types').ActionMessage} actionMessage
 	 */
-	async function renderActionsThreadMessage(actionMessage) {
+	async function renderActionThreadMessage(actionMessage) {
 		try {
 		// Get all members of role
 			const guild = client.guilds.cache.get(actionMessage.guildId);
@@ -114,7 +114,7 @@ function customActions(client) {
 	 *
 	 * @param {import('../helpers/types').ActionMessage} actionMessage
 	 */
-	async function renderActionsPollMessage(actionMessage) {
+	async function renderActionPollMessage(actionMessage) {
 		try {
 			const options = actionMessage.commandInput?.trim().split(',').map(option => option.trim());
 			const reactions = options.map((_, index) => getLetterEmoji(index)).filter(r => !!r);
@@ -170,9 +170,9 @@ ${italic('Pending:')}\n${usersPending.map(u => `:white_small_square: ${u.toStrin
 
 	return {
 		cacheExistingMessages,
-		renderActionsReactMessage,
-		renderActionsThreadMessage,
-		renderActionsPollMessage,
+		renderActionReactMessage,
+		renderActionThreadMessage,
+		renderActionPollMessage,
 	};
 }
 

@@ -22,11 +22,11 @@ module.exports = {
 		if (!user.bot) {
 			const actionMessage = await getActionMessageById(reaction.message.id);
 			if (actionMessage && actionMessage.actionMessageType === 'action-react') {
-				const renderedMessage = await reaction.client.customActions.renderActionsReactMessage(actionMessage);
+				const renderedMessage = await reaction.client.customActions.renderActionReactMessage(actionMessage);
 				reaction.message.edit(renderedMessage);
 			}
 			else if (actionMessage && actionMessage.actionMessageType === 'action-poll') {
-				const renderedMessage = await reaction.client.customActions.renderActionsPollMessage(actionMessage);
+				const renderedMessage = await reaction.client.customActions.renderActionPollMessage(actionMessage);
 				reaction.message.edit(renderedMessage);
 			}
 		}
