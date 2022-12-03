@@ -1,4 +1,4 @@
-![discord-actions-bot](https://socialify.git.ci/wei/discord-actions-bot/image?description=1&font=Bitter&logo=https%3A%2F%2Fdiscord.com%2Fassets%2F145dc557845548a36a82337912ca3ac5.svg&name=1&pattern=Plus&theme=Dark)
+![discord-actions-bot](https://socialify.git.ci/wei/discord-actions-bot/image?description=1&font=Bitter&logo=https%3A%2F%2Fuser-images.githubusercontent.com%2F5880908%2F205446002-9245a89e-9927-49cd-91dc-bea8bd079336.svg&name=1&pattern=Plus&theme=Dark)
 
 
 ## Installation
